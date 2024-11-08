@@ -25,23 +25,23 @@ import EndCallButton from "./EndCallButton";
 type CallLayoutType = "grid" | "speaker-left" | "speaker-right";
 
 const MeetingRoom = () => {
-    const router = useRouter();
-    const searchParams = useSearchParams();
-    const isPersonalRoom = !!searchParams.get("personal"); //why we used double excalamation mark here? because we want to convert the value to boolean if it is undefined or null it will return false otherwise true
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const isPersonalRoom = !!searchParams.get("personal"); //why we used double excalamation mark here? because we want to convert the value to boolean if it is undefined or null it will return false otherwise true
   const [layout, setLayout] = useState<CallLayoutType>("speaker-left");
   const [showParticipants, setShowParticipants] = useState(false);
-  const {useCallCallingState} = useCallStateHooks();
+  const { useCallCallingState } = useCallStateHooks();
 
   const callingState = useCallCallingState();
   console.log(callingState);
-  
-//   if(callingState === CallingState.JOINING) return <Loader/>;
 
-//   if(callingState === CallingState.LEFT) {
-//     router.push("/");
-//     return;}
+  //   if(callingState === CallingState.JOINING) return <Loader/>;
 
-if(callingState !== CallingState.JOINED) return <Loader/>;
+  //   if(callingState === CallingState.LEFT) {
+  //     router.push("/");
+  //     return;}
+
+  if (callingState !== CallingState.JOINED) return <Loader />;
 
   const CallLayout = () => {
     switch (layout) {
@@ -75,7 +75,7 @@ if(callingState !== CallingState.JOINED) return <Loader/>;
         </div>
       </div>
       <div className="fixed bottom-0 flex w-full items-center justify-center gap-5 flex-wrap">
-        <CallControls onLeave={() => router.push('/')}/>
+        <CallControls onLeave={() => router.push("/")} />
 
         <DropdownMenu>
           <div className="flex items-center">
@@ -101,12 +101,15 @@ if(callingState !== CallingState.JOINED) return <Loader/>;
           </DropdownMenuContent>
         </DropdownMenu>
         <CallStatsButton />
-        <button className="bg-[#19232d] px-4 py-2 hover:bg-[#4c535b]" onClick={() => setShowParticipants((prev) => !prev)}>
+        <button
+          className="bg-[#19232d] px-4 py-2 hover:bg-[#4c535b]"
+          onClick={() => setShowParticipants((prev) => !prev)}
+        >
           <div className="cursor-pointer rounded-2xl">
             <Users size={20} className="text-white" />
           </div>
         </button>
-        {!isPersonalRoom && (<EndCallButton/>)}
+        {!isPersonalRoom && <EndCallButton />}
       </div>
     </section>
   );

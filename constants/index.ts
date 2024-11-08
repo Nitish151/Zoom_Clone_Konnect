@@ -24,6 +24,11 @@ export const sidebarLinks = [
         imgUrl: '/icons/add-personal.svg',
         route:'/personal-room'
     },
+    {
+        label:'News',
+        imgUrl: '/icons/newspaper-regular.svg',
+        route:'/news'
+    },
 ]
 
 export const avatarImages = [
